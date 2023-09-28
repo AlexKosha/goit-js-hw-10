@@ -1,0 +1,2 @@
+.loader{width:30px;height:30px;box-sizing:border-box;border:5px solid #ff3d00;border-color:#ff3d00 rgba(0,0,0,0);border-radius:50%;margin-top:10px;animation:rotation 1s linear infinite;display:block}@keyframes rotation{0%{transform:rotate(0deg)}to{transform:rotate(360deg)}}.error{color:red;font-weight:700}.cat-info{gap:50px;margin-top:50px;display:flex}.cat-info img{width:600px;height:600px}.text-des{width:600px;font-size:20px}.text-tem{font-weight:700}.hidden{display:none}
+/*# sourceMappingURL=index.6a8997d3.css.map */
