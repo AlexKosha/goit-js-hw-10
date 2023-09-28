@@ -1,0 +1,48 @@
+.loader {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    border: 5px solid;
+    border-color: #FF3D00 transparent;
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+.error{
+    color: red;
+    font-weight: 700;
+}
+.cat-info{
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.cat-info img{
+    width: 600px;
+    height: 600px;
+}
+
+.text-des{
+    font-size: 20px;
+    width: 600px;
+}
+
+.text-tem{
+    font-weight: 700;
+}
+
+.hidden{
+    display : none;
+}
