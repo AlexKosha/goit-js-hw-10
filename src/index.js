@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {fetchBreeds ,fetchCatByBreed} from './js/cat-api.js';
 import Notiflix, { Notify } from 'notiflix';
+import SlimSelect from 'slim-select';
 
 axios.defaults.headers.common['x-api-key']= 'live_bhjUdxcI1QxvsIsUnHuPTh3P4g76Z6r6nZuDeDnfWC1wVk8FdvGeWzjb3kQIDaAh'
 
@@ -10,6 +11,10 @@ const refs ={
     loader : document.querySelector('.loader'),
     errorMsg :document.querySelector('.error')
 }
+
+const select = new SlimSelect({
+    select: '.breed-select'
+})
 
 fetchBreeds()
 .then(markupOprions)
@@ -24,12 +29,14 @@ function errorMsg() {
 }
 
 function markupOprions (data) {
-    data.forEach(breed => {
-        const option = document.createElement('option');
-        option.value = breed.id;
-        option.textContent = breed.name;
-        refs.select.appendChild(option)
-})}
+    const options = data.map(breed => ({
+        // const option = document.createElement('option');
+        value: breed.id,
+        text: breed.name
+        // refs.select.appendChild(option)
+}))
+select.setData(options)
+}
 
 function onChangeInfo() {
     const breedId = refs.select.value
