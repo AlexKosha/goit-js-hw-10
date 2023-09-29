@@ -12,44 +12,45 @@ const refs ={
     errorMsg :document.querySelector('.error')
 }
 
-loaderPage()
-
 const select = new SlimSelect({
     select: '.breed-select',
 })
 
+let firstChange = true;
+
 fetchBreeds()
-.then(markupOprions)
+.then(markupOptions)
 .catch(errorMsg)
 
 refs.select.addEventListener('change', onChangeInfo)
-  
-function errorMsg() {
-    Notify.failure(refs.errorMsg.textContent)
-    refs.catInfo.classList.add('hidden')
-    refs.select.classList.toggle('hidden')
-}
 
-function markupOprions (data) {
-    
+function markupOptions (data) {
     const options = data.map(breed => ({
-        value: breed.id,
-        text: breed.name
+        text: breed.name,
+        value: breed.id
 }))
 select.setData(options)
-loaderPage()
+loaderMsg()
 }
 
 function onChangeInfo() {
-    const breedId = refs.select.value
+    if (!firstChange) {
+        InfoPage();
+    }else{
+        firstChange = false;
+    }
+};
 
+function InfoPage() {
+    const breedId = refs.select.value
+console.log(breedId)
     loaderMsg()
 
     fetchCatByBreed(breedId)
     .then(markupCatInfo)
     .catch(errorMsg);
-
-};
+    console.log(breedId)
+}
 
 function markupCatInfo(catData) {
     loaderMsg()
@@ -69,12 +70,15 @@ function markingCatInfo (data){
 `
 }
 
-function loaderMsg() {
-    refs.loader.classList.toggle('hidden')
-    refs.catInfo.classList.toggle('hidden')
+function errorMsg() {
+    Notify.failure(refs.errorMsg.textContent)
+    refs.loader.classList.add('hidden')
+    refs.select.classList.add('hidden')
 }
 
-function loaderPage() {
-    refs.loader.classList.toggle('hidden');  
-    refs.select.classList.toggle('hidden');      
+function loaderMsg(){
+    refs.loader.classList.toggle('hidden')
+    refs.select.classList.remove('hidden')
 }
+
+
