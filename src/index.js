@@ -12,8 +12,10 @@ const refs ={
     errorMsg :document.querySelector('.error')
 }
 
+loaderPage()
+
 const select = new SlimSelect({
-    select: '.breed-select'
+    select: '.breed-select',
 })
 
 fetchBreeds()
@@ -25,15 +27,17 @@ refs.select.addEventListener('change', onChangeInfo)
 function errorMsg() {
     Notify.failure(refs.errorMsg.textContent)
     refs.catInfo.classList.add('hidden')
-    refs.select.classList.add('hidden')
+    refs.select.classList.toggle('hidden')
 }
 
 function markupOprions (data) {
+    
     const options = data.map(breed => ({
         value: breed.id,
         text: breed.name
 }))
 select.setData(options)
+loaderPage()
 }
 
 function onChangeInfo() {
@@ -50,7 +54,6 @@ function onChangeInfo() {
 function markupCatInfo(catData) {
     loaderMsg()
     refs.catInfo.innerHTML = markingCatInfo(catData);
-
 }
 
 function markingCatInfo (data){
@@ -69,4 +72,9 @@ function markingCatInfo (data){
 function loaderMsg() {
     refs.loader.classList.toggle('hidden')
     refs.catInfo.classList.toggle('hidden')
+}
+
+function loaderPage() {
+    refs.loader.classList.toggle('hidden');  
+    refs.select.classList.toggle('hidden');      
 }
