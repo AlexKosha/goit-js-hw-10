@@ -30,10 +30,8 @@ function errorMsg() {
 
 function markupOprions (data) {
     const options = data.map(breed => ({
-        // const option = document.createElement('option');
         value: breed.id,
         text: breed.name
-        // refs.select.appendChild(option)
 }))
 select.setData(options)
 }
