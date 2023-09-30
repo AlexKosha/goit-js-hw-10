@@ -74,11 +74,13 @@ function errorMsg() {
     Notify.failure(refs.errorMsg.textContent)
     refs.loader.classList.add('hidden')
     refs.select.classList.add('hidden')
+    refs.catInfo.classList.add('hidden')
 }
 
 function loaderMsg(){
     refs.loader.classList.toggle('hidden')
     refs.select.classList.remove('hidden')
+    refs.catInfo.classList.toggle('hidden')
 }
 
 
